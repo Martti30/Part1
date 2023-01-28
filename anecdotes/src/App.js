@@ -12,25 +12,34 @@ const App = () => {
     'The only way to go fast, is to go well.',
     'A primary cause of complexity is that software vendors uncritically adopt almost any feature that users want.'
   ]
+
+   
+  
    
   const [selected, setSelected] = useState(0)
+  const [points, setPoints] = useState (new Array(anecdotes.length).fill(0)) 
 
+  const handleVoteClick = () => {
+  
+    let copy = [...points]
+    copy[selected] += 1
+    setPoints (copy);
+  
+   console.log(points);
+   
+  }
   return (
     <div>
+
       {anecdotes[selected]}
-      
+      <p>has {points[selected]} votes</p>
 <div>
+<button onClick={handleVoteClick}>vote</button>
+
 <button onClick={() => setSelected(Math.floor(Math.random() * anecdotes.length))} >next anecdote</button>
-
-
-
 </div>
-
-    </div>
+</div>
     
-
-
-
   )
 }
 
